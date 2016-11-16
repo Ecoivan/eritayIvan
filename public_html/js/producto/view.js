@@ -29,9 +29,9 @@
 
 moduloDocumento.controller('DocumentoViewController', ['$scope', '$routeParams', 'serverService', '$location',
     function ($scope, $routeParams, serverService, $location) {
-        $scope.title = "Vista de documento";
+        $scope.title = "Vista de producto";
         $scope.icon = "fa-file-text-o";
-        $scope.ob = 'documento';
+        $scope.ob = 'producto';
         $scope.id = $routeParams.id;
         serverService.promise_getOne($scope.ob, $scope.id).then(function (response) {
             $scope.bean = response.data.message;
@@ -40,7 +40,7 @@ moduloDocumento.controller('DocumentoViewController', ['$scope', '$routeParams',
             $location.path('/home');
         };
         $scope.plist = function () {
-            $location.path('/documento/plist');
+            $location.path('/producto/plist');
         };
         $scope.back = function () {
             window.history.back();

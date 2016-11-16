@@ -34,21 +34,12 @@ moduloDocumento.controller('DocumentoPListController', ['$scope', '$routeParams'
 
         $scope.visibles = {};
         $scope.visibles.id = true;
-        $scope.visibles.titulo = true;
-        $scope.visibles.contenido = true;
-        $scope.visibles.alta = true;
-        $scope.visibles.cambio = true;
-        $scope.visibles.hits = true;
-        $scope.visibles.id_usuario = true;
-        $scope.visibles.id_tipodocumento = true;
-        $scope.visibles.etiquetas = true;
-        $scope.visibles.publicado = true;
-        $scope.visibles.portada = true;
-        $scope.visibles.destacado = true;
+        $scope.visibles.codigo = true;
+        $scope.visibles.precio = true;
 
-        $scope.ob = "documento";
+        $scope.ob = "producto";
         $scope.op = "plist";
-        $scope.title = "Listado de documentos";
+        $scope.title = "Listado de productos";
         $scope.icon = "fa-file-text-o";
         $scope.neighbourhood = 2;
 

@@ -105,17 +105,8 @@ THE SOFTWARE.
                                                     <p></p>
                                                     <p>Campos visibles:</p>
                                                     <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
-                                                    <input type="checkbox" ng-model="visibles.titulo" ng-checked="visibles.titulo" >Título
-                                                    <input type="checkbox" ng-model="visibles.contenido" ng-checked="visibles.contenido">Contenido
-                                                    <input type="checkbox" ng-model="visibles.alta" ng-checked="visibles.alta">Alta
-                                                    <input type="checkbox" ng-model="visibles.cambio" ng-checked="visibles.cambio">Último cambio
-                                                    <input type="checkbox" ng-model="visibles.hits" ng-checked="visibles.hits">Visitas
-                                                    <input type="checkbox" ng-model="visibles.id_usuario" ng-checked="visibles.id_usuario">Usuario
-                                                    <input type="checkbox" ng-model="visibles.id_tipodocumento" ng-checked="visibles.id_tipodocumento">Tipo
-                                                    <input type="checkbox" ng-model="visibles.etiquetas" ng-checked="visibles.etiquetas">Etiquetas
-                                                    <input type="checkbox" ng-model="visibles.publicado" ng-checked="visibles.publicado">Publicado
-                                                    <input type="checkbox" ng-model="visibles.portada" ng-checked="visibles.portada">Portada
-                                                    <input type="checkbox" ng-model="visibles.destacado" ng-checked="visibles.destacado">Destacado                                                                                                                              
+                                                    <input type="checkbox" ng-model="visibles.codigo" ng-checked="visibles.codigo" >Código
+                                                    <input type="checkbox" ng-model="visibles.precio" ng-checked="visibles.precio">Precio                                                                                                                             
                                                     <p></p>
                                                 </div>
                                             </div>
@@ -128,17 +119,8 @@ THE SOFTWARE.
                                                         <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
                                                             <option style="display:none">selecciona un campo</option>
                                                             <option value="id">Identificador</option>
-                                                            <option value="titulo">Título</option>
-                                                            <option value="contenido">Contenido</option>
-                                                            <option value="alta">Alta</option>
-                                                            <option value="cambio">Último cambio</option>
-                                                            <option value="hits">Visitas</option>
-                                                            <option value="id_usuario">Usuario</option>                                    
-                                                            <option value="id_tipodocumento">Tipo</option>
-                                                            <option value="etiquetas">Etiquetas</option>
-                                                            <option value="publicado">¿Publicado?</option>
-                                                            <option value="portada">¿Portada?</option>
-                                                            <option value="destacado">¿Destacado?</option>                                                   
+                                                            <option value="codigo">Codigo</option>
+                                                            <option value="precio">Precio</option>                                                  
                                                         </select>
                                                         <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                                             <option style="display:none">selecciona una operacion</option>
@@ -196,88 +178,26 @@ THE SOFTWARE.
                                             <a ng-show="visibles.id" ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                             <a ng-show="visibles.id" ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>                                                                                     
                                         </th>
-                                        <th ng-show="visibles.titulo"  class="text-center">
-                                            Título<br/>
-                                            <a ng-show="visibles.titulo" ng-click="doorder('titulo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.titulo" ng-click="doorder('titulo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        <th ng-show="visibles.codigo"  class="text-center">
+                                            Codigo<br/>
+                                            <a ng-show="visibles.codigo" ng-click="doorder('codigo', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.codigo" ng-click="doorder('codigo', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                         </th>
-                                        <th ng-show="visibles.contenido"  class="text-center">
-                                            Contenido<br/>
-                                            <a ng-show="visibles.contenido" ng-click="doorder('contenido', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.contenido" ng-click="doorder('contenido', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        <th ng-show="visibles.precio"  class="text-center">
+                                            Precio<br/>
+                                            <a ng-show="visibles.precio" ng-click="doorder('precio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.precio" ng-click="doorder('precio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
 
                                         </th>
-                                        <th ng-show="visibles.alta" class="text-center">
-                                            Alta<br/>
-                                            <a ng-show="visibles.alta" ng-click="doorder('alta', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.alta" ng-click="doorder('alta', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.cambio" class="text-center">
-                                            Último cambio<br/>
-                                            <a ng-show="visibles.cambio" ng-click="doorder('cambio', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.cambio" ng-click="doorder('cambio', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.hits" class="text-center">
-                                            Visitas<br/>
-                                            <a ng-show="visibles.hits" ng-click="doorder('hits', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.hits" ng-click="doorder('hits', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.id_usuario" class="text-center">
-                                            Usuario<br/>
-                                            <a ng-show="visibles.id_usuario" ng-click="doorder('id_usuario', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.id_usuario" ng-click="doorder('id_usuario', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.id_tipodocumento" class="text-center">
-                                            Tipo<br/>
-                                            <a ng-show="visibles.id_tipodocumento" ng-click="doorder('id_tipodocumento', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.id_tipodocumento" ng-click="doorder('id_tipodocumento', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.etiquetas" class="text-center">
-                                            Etiquetas<br/>
-                                            <a ng-show="visibles.etiquetas" ng-click="doorder('etiquetas', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.etiquetas" ng-click="doorder('etiquetas', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.publicado" class="text-center">
-                                            ¿Publicado?<br/>
-                                            <a ng-show="visibles.publicado" ng-click="doorder('publicado', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.publicado" ng-click="doorder('publicado', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.portada" class="text-center">
-                                            ¿Portada?<br/>
-                                            <a ng-show="visibles.portada" ng-click="doorder('portada', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.portada" ng-click="doorder('portada', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th ng-show="visibles.destacado" class="text-center">
-                                            ¿Destacado?<br/>
-                                            <a ng-show="visibles.destacado" ng-click="doorder('destacado', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.destacado" ng-click="doorder('destacado', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
+                                        
                                         <th  class="text-center">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="obj in page| filter:searchText">
                                         <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>
-                                        <td ng-show="visibles.titulo">{{obj.titulo}}</td>
-                                        <td ng-show="visibles.contenido">{{obj.contenido| clipString}}</td>
-                                        <td ng-show="visibles.alta">{{obj.alta}}</td>
-                                        <td ng-show="visibles.cambio">{{obj.cambio}}</td>
-                                        <td ng-show="visibles.hits" class="text-right">{{obj.hits}}</td>
-                                        <td ng-show="visibles.id_usuario"><linkusuario source="obj.obj_usuario"></linkusuario></td>
-                                <td ng-show="visibles.id_tipodocumento"><a href="#/tipodocumento/view/{{obj.obj_tipodocumento.id}}">{{obj.obj_tipodocumento.descripcion}}</a></td>
-                                <td ng-show="visibles.etiquetas">{{obj.etiquetas}}</td>
-                                <td ng-show="visibles.publicado" class="text-center" ng-bind-html="obj.publicado | booleanizate"></td>
-                                <td ng-show="visibles.portada" class="text-center" ng-bind-html="obj.portada | booleanizate"></td>
-                                <td ng-show="visibles.destacado" class="text-center" ng-bind-html="obj.destacado | booleanizate"></td>
+                                        <td ng-show="visibles.codigo">{{obj.codigo}}</td>
+                                        <td ng-show="visibles.precio">{{obj.precio}}</td>                                        
                                 <td>
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

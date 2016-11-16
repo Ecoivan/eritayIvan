@@ -57,11 +57,11 @@ eritay.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/home', {templateUrl: 'js/system/home.html', controller: 'HomeController'});
         $routeProvider.when('/license', {templateUrl: 'js/system/license.html', controller: 'LicenseController'});
         //------------
-        $routeProvider.when('/documento/view/:id', {templateUrl: 'js/documento/view.html', controller: 'DocumentoViewController'});
-        $routeProvider.when('/documento/new', {templateUrl: 'js/documento/newedit.html', controller: 'DocumentoNewController'});
-        $routeProvider.when('/documento/edit/:id', {templateUrl: 'js/documento/newedit.html', controller: 'DocumentoEditController'});
-        $routeProvider.when('/documento/remove/:id', {templateUrl: 'js/documento/remove.html', controller: 'DocumentoRemoveController'});
-        $routeProvider.when('/documento/plist/:page?/:rpp?', {templateUrl: 'js/documento/plist.html', controller: 'DocumentoPListController'});
+        $routeProvider.when('/producto/view/:id', {templateUrl: 'js/producto/view.html', controller: 'DocumentoViewController'});
+        $routeProvider.when('/producto/new', {templateUrl: 'js/producto/newedit.html', controller: 'DocumentoNewController'});
+        $routeProvider.when('/producto/edit/:id', {templateUrl: 'js/producto/newedit.html', controller: 'DocumentoEditController'});
+        $routeProvider.when('/producto/remove/:id', {templateUrl: 'js/producto/remove.html', controller: 'DocumentoRemoveController'});
+        $routeProvider.when('/producto/plist/:page?/:rpp?', {templateUrl: 'js/producto/plist.html', controller: 'DocumentoPListController'});
         //------------
         $routeProvider.when('/usuario/view/:id', {templateUrl: 'js/usuario/view.html', controller: 'UsuarioViewController'});
         $routeProvider.when('/usuario/new/:id?', {templateUrl: 'js/usuario/newedit.html', controller: 'UsuarioNewController'});

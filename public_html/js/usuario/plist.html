@@ -106,15 +106,10 @@ THE SOFTWARE.
                                                     <p>Campos visibles:</p>
                                                     <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
                                                     <input type="checkbox" ng-model="visibles.nombre" ng-checked="visibles.nombre" >Nombre
-                                                    <input type="checkbox" ng-model="visibles.apellidos" ng-checked="visibles.apellidos" >Apellidos
-                                                    <input type="checkbox" ng-model="visibles.email" ng-checked="visibles.email" >Email
-                                                    <input type="checkbox" ng-model="visibles.login" ng-checked="visibles.login" >Login
-                                                    <input type="checkbox" ng-model="visibles.password" ng-checked="visibles.password">Password
-                                                    <input type="checkbox" ng-model="visibles.id_tipousuario" ng-checked="visibles.id_tipousuario">Tipo de usuario
-                                                    <input type="checkbox" ng-model="visibles.id_estado" ng-checked="visibles.id_estado">Estado del usuario
-                                                    <input type="checkbox" ng-model="visibles.ciudad" ng-checked="visibles.ciudad">Ciudad
-                                                    <input type="checkbox" ng-model="visibles.firma" ng-checked="visibles.firma">Firma
-                                                    <input type="checkbox" ng-model="visibles.skin" ng-checked="visibles.skin">Skin
+                                                    <input type="checkbox" ng-model="visibles.apellido1" ng-checked="visibles.apellido1" >Apellido1
+                                                    <input type="checkbox" ng-model="visibles.apellido2" ng-checked="visibles.apellido2" >Apellido2
+                                                    <input type="checkbox" ng-model="visibles.dni" ng-checked="visibles.dni">Dni
+                                                    <input type="checkbox" ng-model="visibles.tipo_usuario" ng-checked="visibles.tipo_usuario">TipoUsuario
 
 
                                                     <p></p>
@@ -132,13 +127,11 @@ THE SOFTWARE.
                                                         <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
                                                             <option style="display:none">selecciona un campo</option>                                    
                                                             <option value="id">Identificador</option>
-                                                            <option value="login">Login</option>
-                                                            <option value="password">Password</option>
-                                                            <option value="id_tipousuario">Tipo</option>
-                                                            <option value="id_estado">Estado</option>
-                                                            <option value="ciudad">Ciudad</option>
-                                                            <option value="firma">Firma</option>
-                                                            <option value="skin">Skin</option>
+                                                            <option value="nombre">Nombre</option>
+                                                            <option value="apellido1">Apellido1</option>
+                                                            <option value="apellido2">Apellido2</option>
+                                                            <option value="dni">Dni</option>
+                                                            <option value="tipo_usuario">Tipo</option>
                                                         </select>
                                                         <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
                                                             <option style="display:none">selecciona una operacion</option>
@@ -196,51 +189,25 @@ THE SOFTWARE.
                                             <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
                                             <a ng-show="visibles.nombre" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=nombre&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                         </th>
-                                        <th ng-show="visibles.apellidos" class="text-center">
-                                            Apellidos<br/>
-                                            <a ng-show="visibles.apellidos" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=apellidos&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.apellidos" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=apellidos&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        <th ng-show="visibles.apellido1" class="text-center">
+                                            Apellido1<br/>
+                                            <a ng-show="visibles.apellido1" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=apellidos&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.apellido1" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=apellidos&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                         </th>
-                                        <th ng-show="visibles.email" class="text-center">
-                                            Email<br/>
-                                            <a ng-show="visibles.email" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=email&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.email" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=email&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        <th ng-show="visibles.apellido2" class="text-center">
+                                            Apellido2<br/>
+                                            <a ng-show="visibles.apellido2" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=email&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.apellido2" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=email&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                         </th>
-                                        <th ng-show="visibles.login" class="text-center">
-                                            Login<br/>
-                                            <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.login" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=login&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        <th  ng-show="visibles.dni" class="text-center">
+                                            Dni<br/>
+                                            <a ng-show="visibles.dni"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_estado&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.dni"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_estado&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                         </th>
-                                        <th ng-show="visibles.password" class="text-center">
-                                            Password<br/>
-                                            <a ng-show="visibles.password" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=password&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.password" href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=password&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-
-                                        </th>
-                                        <th  ng-show="visibles.id_estado" class="text-center">
-                                            Estado<br/>
-                                            <a ng-show="visibles.id_estado"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_estado&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.id_estado"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_estado&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                        </th>
-                                        <th ng-show="visibles.id_tipousuario" class="text-center">
+                                        <th ng-show="visibles.tipo_usuario" class="text-center">
                                             Tipo<br/>
-                                            <a ng-show="visibles.id_tipousuario"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.id_tipousuario"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                        </th>
-                                        <th ng-show="visibles.ciudad" class="text-center">
-                                            Ciudad<br/>
-                                            <a ng-show="visibles.ciudad"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=ciudad&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.ciudad"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=ciudad&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                        </th>
-                                        <th ng-show="visibles.firma" class="text-center">
-                                            Firma<br/>
-                                            <a ng-show="visibles.firma"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=firma&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.firma"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=firma&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
-                                        </th>
-                                        <th ng-show="visibles.skin" class="text-center">
-                                            Skin<br/>
-                                            <a ng-show="visibles.skin"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=skin&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
-                                            <a ng-show="visibles.skin"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=skin&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                            <a ng-show="visibles.tipo_usuario"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=asc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.tipo_usuario"  href="#/{{ob}}/plist/{{numpage}}/{{rpp}}?order=id_tipousuario&ordervalue=desc{{paramsWithoutOrder}}"><i class="glyphicon glyphicon-arrow-down"></i></a>
                                         </th>
                                         <th  class="text-center">
                                             Acciones
@@ -251,15 +218,10 @@ THE SOFTWARE.
                                     <tr ng-repeat="obj in page| filter:searchText">
                                         <td ng-show="visibles.id" class="text-right">{{obj.id}}</td>
                                         <td ng-show="visibles.nombre">{{obj.nombre}}</td>
-                                        <td ng-show="visibles.apellidos">{{obj.apellidos}}</td>
-                                        <td ng-show="visibles.email">{{obj.email}}</td>
-                                        <td ng-show="visibles.login">{{obj.login}}</td>
-                                        <td ng-show="visibles.password">{{obj.password}}</td>                                                       
-                                        <td ng-show="visibles.id_estado"><a href="#/estado/view/{{obj.obj_estado.id}}">{{obj.obj_estado.tipo}}</a></td>
-                                        <td ng-show="visibles.id_tipousuario"><a href="#/tipousuario/view/{{obj.obj_tipousuario.id}}">{{obj.obj_tipousuario.descripcion}}</a></td>
-                                        <td ng-show="visibles.ciudad">{{obj.ciudad}}</td>
-                                        <td ng-show="visibles.firma">{{obj.firma|clipString}}</td>
-                                        <td ng-show="visibles.skin">{{obj.skin}}</td>
+                                        <td ng-show="visibles.apellido1">{{obj.apellido1}}</td>
+                                        <td ng-show="visibles.apellido2">{{obj.apellido2}}</td>                                                      
+                                        <td ng-show="visibles.dni">{{obj.dni}}</td>
+                                        <td ng-show="visibles.tipo_usuario">{{obj.tipo_usuario.acceso}}</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

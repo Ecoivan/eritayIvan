@@ -35,15 +35,10 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 's
         $scope.visibles={};
         $scope.visibles.id = true;
         $scope.visibles.nombre = true;
-        $scope.visibles.apellidos = true;
-        $scope.visibles.email = true;
-        $scope.visibles.login = true;
-        $scope.visibles.password = true;
-        $scope.visibles.id_estado = true;
-        $scope.visibles.id_tipousuario = true;
-        $scope.visibles.ciudad = true;
-        $scope.visibles.firma = true;
-        $scope.visibles.skin = true;
+        $scope.visibles.apellido1 = true;
+        $scope.visibles.apellido2 = true;
+        $scope.visibles.dni = true;
+        $scope.visibles.tipo_usuario = true;
 
 
         $scope.ob = "usuario";
@@ -108,18 +103,26 @@ moduloUsuario.controller('UsuarioPListController', ['$scope', '$routeParams', 's
         $scope.params = ($scope.orderParams + $scope.filterParams + $scope.systemFilterParams);
         $scope.params = $scope.params.replace('&', '?');
 
-        serverService.getDataFromPromise(serverService.promise_getSome($scope.ob, $scope.rpp, $scope.numpage, $scope.filterParams, $scope.orderParams, $scope.systemFilterParams)).then(function (data) {
-            if (data.status != 200) {
-                $scope.status = "Error en la recepción de datos del servidor";
-            } else {
-                $scope.pages = data.message.pages.message;
-                if (parseInt($scope.numpage) > parseInt($scope.pages))
+        serverService.promise_getCount($scope.ob, $scope.filterExpression).then(function (response) {
+            if (response.status == 200) {
+                $scope.registers = response.data.message;
+                $scope.pages = serverService.calculatePages($scope.rpp, $scope.registers);
+                if ($scope.numpage > $scope.pages) {
                     $scope.numpage = $scope.pages;
-
-                $scope.page = data.message.page.message;
-                $scope.registers = data.message.registers.message;
-                $scope.status = "";
+                }
+                return serverService.promise_getPage($scope.ob, $scope.rpp, $scope.numpage, $scope.filterExpression, $routeParams.order);
+            } else {
+                $scope.status = "Error en la recepción de datos del servidor";
             }
+        }).then(function (response) {
+            if (response.status == 200) {
+                $scope.page = response.data.message;
+                $scope.status = "";
+            } else {
+                $scope.status = "Error en la recepción de datos del servidor";
+            }
+        }).catch(function (data) {
+            $scope.status = "Error en la recepción de datos del servidor";
         });
 
         $scope.getRangeArray = function (lowEnd, highEnd) {
