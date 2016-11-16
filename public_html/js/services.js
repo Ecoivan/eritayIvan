@@ -59,7 +59,7 @@ angular.module('Services', [])
 //                        return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/json';
 //                        },
                 getAppUrl: function () {
-                    return "http://localhost:8084/zylkanexy/json";
+                    return "http://localhost:8081/zylkanexy/json";
                     //return location.protocol + '//' + location.hostname + ':' + location.port + '/' + this.getAppName() + '/index.php';
                 },
                 date_toDate: function (input) {

@@ -1,0 +1,219 @@
+<!--
+Copyright (c) 2015 by Rafael Angel Aznar Aparici (rafaaznar at gmail dot com)
+
+eritay: The stunning micro-library that helps you to develop easily
+            AJAX web applications by using Java and jQuery
+eritay is distributed under the MIT License (MIT)
+Sources at https://github.com/rafaelaznar/
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+-->
+<div id="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="font-family:Oswald , serif;"  ng-include="'js/system/header.html'"></div>
+                    <div class="panel-body"  ng-cloak>
+                        <div class="row">
+                            <div class="col-xs-12" ng-show="!status">
+                                <div role="tabpanel">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a data-target="#pane0" aria-controls="pane0" role="tab" data-toggle="tab" aria-expanded="false">Consulta</a>
+                                        </li>
+                                        <li role="presentation"><a data-target="#pane1" aria-controls="pane1" role="tab" data-toggle="tab" aria-expanded="true">Campos visibles</a></li>
+                                        <li role="presentation"><a data-target="#pane2" aria-controls="pane2" role="tab" data-toggle="tab">Filtro de servidor</a></li>
+                                        <li role="presentation"><a data-target="#pane3" aria-controls="pane3" role="tab" data-toggle="tab">Filtro de cliente</a></li>
+                                        <li role="presentation"><a data-target="#pane4" aria-controls="pane4" role="tab" data-toggle="tab">Nuevo registro</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" id="pane0" class="tab-pane fade active in">
+                                            <p></p>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-3 col-sm-12">
+                                                    <p>Mostrando una consulta de {{registers}} registros.</p>
+                                                    <p ng-show="orderParams == null">Contenido no ordenado</p>
+                                                    <p ng-show="orderParams != null"><small>Contenido ordenado por {{orderParams}} <a ng-click="doresetorder()" id="linkQuitarOrden">(Quitar orden)</a></small></p>
+                                                    <p ng-show="filterParams == null">Contenido no filtrado</p>
+                                                    <p ng-show="filterParams != null"><small>Contenido filtrado ({{filterParams}}) <a ng-click="doresetfilter()" id="linkQuitarFiltro">(Quitar filtro)</a></small></p>
+                                                </div>
+
+                                                <div class="col-lg-6  col-md-6 col-sm-8 text-center">
+                                                    Paginación: <br>
+                                                    <ul class="pagination">
+                                                        <li><a class="pagination_link" ng-show="numpage > 1" ng-attr-id="{{numpage - 1}}" ng-click="gotopage(numpage - 1)">prev</a></li>
+                                                        <li><a class="pagination_link" id="1" ng-click="gotopage(1)" ng-show="numpage > neighbourhood + 1">1</a></li>
+
+                                                        <li class="pagination_link disabled"><a ng-show="numpage > neighbourhood - -2">ooo</a></li>
+
+                                                        <li ng-repeat="i in getRangeArray(evaluateMax(1, numpage - neighbourhood), (numpage - 1))">
+                                                            <a class="pagination_link" ng-attr-id="{{i}}" ng-click="gotopage(i)">{{i}}</a>
+                                                        </li>
+
+                                                        <li class="active" ng-show="(numpage >= 1) && (numpage <= pages)">
+                                                            <a class="pagination_link" ng-attr-id="{{numpage}}" ng-click="gotopage(numpage)">{{numpage}}</a>
+                                                        </li>
+
+                                                        <li ng-repeat="j in getRangeArray(numpage - -1, evaluateMin(numpage - -neighbourhood, pages))">
+                                                            <a class="pagination_link" ng-attr-id="{{j}}" ng-click="gotopage(j)">{{j}}</a>
+                                                        </li>
+
+                                                        <li class="pagination_link disabled"><a ng-show="numpage < (pages - (neighbourhood - -1))">ooo</a></li>
+
+                                                        <li><a class="pagination_link" ng-show="numpage < pages - neighbourhood" ng-attr-id="{{pages}}" ng-click="gotopage(pages)">{{pages}}</a></li>
+                                                        <li><a class="pagination_link" ng-show="numpage < pages" ng-attr-id="{{numpage - -1}}" ng-click="gotopage(numpage - - 1)">next</a></li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-3  col-md-3 col-sm-4 text-center">
+                                                    Registros por página: <br>
+                                                    <ul class="pagination">
+                                                        <li class="active" ng-show="rpp == 10"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/10' + params}}">10</a></li>
+                                                        <li ng-show="rpp != 10"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/10' + params}}">10</a></li>            
+                                                        <li class="active" ng-show="rpp == 50"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/50' + params}}">50</a></li>
+                                                        <li ng-show="rpp != 50"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/50' + params}}">50</a></li>
+                                                        <li class="active" ng-show="rpp == 100"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/100' + params}}">100</a></li>
+                                                        <li ng-show="rpp != 100"><a class="rpp_link" id="10" href="{{'#/' + ob + '/' + op + '/' + numpage + '/100' + params}}">100</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <p></p>
+                                        </div>
+
+
+                                        <div role="tabpanel" id="pane1" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <p></p>
+                                                    <p>Campos visibles:</p>
+                                                    <input type="checkbox" ng-model="visibles.id" ng-checked="visibles.id">Ident.
+                                                    <input type="checkbox" ng-model="visibles.fecha" ng-checked="visibles.fecha" >Fecha
+                                                                                                                                                  
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane2" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p></p>
+                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="filterForm">
+                                                        <select id="selectFilter" class="form-control" name="filter" style="width: 160px" ng-model="filter">
+                                                            <option style="display:none">selecciona un campo</option>
+                                                            <option value="id">Identificador</option>
+                                                            <option value="fecha">Fecha</option>
+                                                 
+                                                        </select>
+                                                        <select id="selectFilteroperator" class="form-control" name="filteroperator" width="80" style="width: 200px" ng-model="filteroperator">
+                                                            <option style="display:none">selecciona una operacion</option>
+                                                            <option value="like" ng-selected="true">contiene</option>
+                                                            <option value="nlik">no contiene</option>
+                                                            <option value="star">empieza por</option>
+                                                            <option value="nsta">no empieza por</option>
+                                                            <option value="ends">acaba con</option>
+                                                            <option value="nend">no acaba con</option>                                                                                                                        
+                                                            <option value="equa">es igual a</option>
+                                                            <option value="nequ">es distinto de</option>
+                                                            <option value="lowe">es menor que</option>
+                                                            <option value="lequ">es menor o igual que</option>
+                                                            <option value="grea">es mayor que</option>
+                                                            <option value="gequ">es mayor o igual que</option>
+                                                        </select>
+                                                        <input id="inputFiltervalue" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="filtervalue">
+                                                        <input type="button" class="btn" id="btnFiltrar" name="btnFiltrar" value="Filtrar" ng-click="dofilter()" />
+                                                    </form>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane3" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p></p>
+                                                    <form class="navbar-form navbar-right" role="form" action="Controller" method="post" id="empresaForm">
+                                                        <input id="inputFiltervalueClient" class="form-control" name="filtervalue" type="text" size="20" maxlength="50" value="" width="100" style="width: 140px" placeholder="Valor" ng-model="searchText">
+
+                                                    </form>
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" id="pane4" class="tab-pane fade">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <p><br>
+                                                        <a class="btn btn-primary" href="#/{{ob}}/new">Crear una nueva {{ob}}</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="datos" ng-show="!status">
+                            <table class="table table-responsive table-bordered table-hover table-striped table-condensed dataTable no-footer">
+                                <thead>             
+                                    <tr>                                                   
+                                        <th ng-show="visibles.id" class="text-center">
+                                            Identificador<br/>                                                                                        
+                                            <a ng-show="visibles.id" ng-click="doorder('id', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.id" ng-click="doorder('id', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>                                                                                     
+                                        </th>
+                                        <th ng-show="visibles.fecha"  class="text-center">
+                                            Fecha<br/>
+                                            <a ng-show="visibles.fecha" ng-click="doorder('fecha', 'asc')"><i class="glyphicon glyphicon-arrow-up"></i></a>
+                                            <a ng-show="visibles.fecha" ng-click="doorder('fecha', 'desc')"><i class="glyphicon glyphicon-arrow-down"></i></a>
+                                        </th>
+                                        
+                                        
+                                        <th  class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="obj in page| filter:searchText">
+                                        <td ng-show="visibles.id"  class="text-right">{{obj.id}}</td>
+                                        <td ng-show="visibles.fecha">{{obj.fecha}}</td>                                       
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            Acciones<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="btn btn-default action02" href="#/documento/view/{{obj.id}}"><i class="fa fa-eye fa-2g"></i> Ver</a></li>
+                                            <li><a class="btn btn-default action03" href="#/documento/edit/{{obj.id}}"><i class="fa fa-pencil fa-2g"></i> Editar</a></li>
+                                            <li><a class="btn btn-default action04" href="#/documento/remove/{{obj.id}}"><i class="fa fa-times fa-2g"></i> Borrar</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                </tr>
+                                </tbody>
+                            </table>            
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="font-family: Questrial, serif;" ng-include="'js/system/footer.html'"></div>
+
+
+                </div>
+            </div>
+        </div>     
+    </div>
+</div>

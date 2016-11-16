@@ -37,6 +37,7 @@ var eritay = angular.module('myApp', [
     'systemControllers',
     'documentoControllers',
     'usuarioControllers',
+    'facturaControllers',
     'tipodocumentoControllers',
     'tipousuarioControllers',
     'estadoControllers',
@@ -69,6 +70,13 @@ eritay.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/usuario/remove/:id', {templateUrl: 'js/usuario/remove.html', controller: 'UsuarioRemoveController'});
         $routeProvider.when('/usuario/plist/:page?/:rpp?', {templateUrl: 'js/usuario/plist.html', controller: 'UsuarioPListController'});
         $routeProvider.when('/usuario/selection/:page?/:rpp?', {templateUrl: 'js/usuario/selection.html', controller: 'UsuarioSelectionController'});
+        //------------
+        $routeProvider.when('/factura/view/:id', {templateUrl: 'js/factura/view.html', controller: 'FacturaViewController'});
+        $routeProvider.when('/factura/new/:id?', {templateUrl: 'js/factura/newedit.html', controller: 'FacturaNewController'});
+        $routeProvider.when('/factura/edit/:id', {templateUrl: 'js/factura/newedit.html', controller: 'FacturaEditController'});
+        $routeProvider.when('/factura/remove/:id', {templateUrl: 'js/factura/remove.html', controller: 'FacturaRemoveController'});
+        $routeProvider.when('/factura/plist/:page?/:rpp?', {templateUrl: 'js/factura/plist.html', controller: 'FacturaPListController'});
+        $routeProvider.when('/factura/selection/:page?/:rpp?', {templateUrl: 'js/factura/selection.html', controller: 'FacturaSelectionController'});
         //------------
         $routeProvider.when('/tipodocumento/view/:id', {templateUrl: 'js/tipodocumento/view.html', controller: 'TipodocumentoViewController'});
         $routeProvider.when('/tipodocumento/selection/:page?/:rpp?', {templateUrl: 'js/tipodocumento/selection.html', controller: 'TipodocumentoSelectionController'});
@@ -116,6 +124,7 @@ eritay.run(function ($rootScope, $location, serverService, sessionService) {
 
 var moduloSistema = angular.module('systemControllers', []);
 var moduloUsuario = angular.module('usuarioControllers', []);
+var moduloFactura = angular.module('facturaControllers', []);
 var moduloDocumento = angular.module('documentoControllers', []);
 var moduloTipodocumento = angular.module('tipodocumentoControllers', []);
 var moduloTipousuario = angular.module('tipousuarioControllers', []);

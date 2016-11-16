@@ -51,16 +51,22 @@ THE SOFTWARE.
                             </div>
 
                             <div id="apellidos-group" class="form-group">
-                                <label class="col-sm-2 control-label" for="login">Apellidos:</label>
+                                <label class="col-sm-2 control-label" for="login">Apellido1:</label>
                                 <div class="control col-sm-8">
-                                    <input ng-model="obj.apellidos" type="text" id="apellidos" class="form-control" name="apellidos" size="15" placeholder="apellidos">
+                                    <input ng-model="obj.apellido1" type="text" id="apellido1" class="form-control" name="apellidos" size="15" placeholder="apellido1">
                                 </div>
                             </div>
 
                             <div id="email-group" class="form-group">
-                                <label class="col-sm-2 control-label" for="login">Email:</label>
+                                <label class="col-sm-2 control-label" for="login">Apellido2:</label>
                                 <div class="control col-sm-8">
-                                    <input ng-model="obj.email" type="text" id="email" class="form-control" name="email" size="15" placeholder="email">
+                                    <input ng-model="obj.apellido2" type="text" id="apellido2" class="form-control" name="email" size="15" placeholder="apellido2">
+                                </div>
+                            </div>
+                            <div id="email-group" class="form-group">
+                                <label class="col-sm-2 control-label" for="login">Dni:</label>
+                                <div class="control col-sm-8">
+                                    <input ng-model="obj.dni" type="text" id="dni" class="form-control" name="email" size="15" placeholder="dni">
                                 </div>
                             </div>
                             <div id="login-group" class="form-group">
@@ -95,47 +101,6 @@ THE SOFTWARE.
                                         </span>
                                     </div>
                                 </div>            
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label" for="obj_estado">Estado del usuario:</label>
-                                <div class="control col-sm-3">
-                                    <div class="input-group foreign" id="obj_estado_group">
-                                        <span class="input-group-addon" id="obj_estado_button"  ng-click="chooseOne('estado')">
-                                            <span class="glyphicon glyphicon-search">
-                                            </span>
-                                        </span>
-                                        <input ng-model="obj.obj_estado.id" readonly="true" aria-describedby="basic-addon2" class="form-control" id="obj_estado" name="obj_estado" type="text" size="5" maxlength="5">
-                                        <span class="input-group-addon">
-                                            <a href="#/estado/view/{{obj.obj_estado.id}}">
-                                                <span>{{obj.obj_estado.tipo}}</span>     
-                                            </a>       
-                                        </span>
-                                    </div>
-                                </div>            
-                            </div>
-
-                            <div id="ciudad-group" class="form-group">
-                                <label class="col-sm-2 control-label" for="ciudad">Ciudad:</label>
-                                <div class="control col-sm-9">
-                                    <input ng-model="obj.ciudad" type="text" id="ciudad" class="form-control" name="ciudad" size="15" placeholder="ciudad">
-                                </div>
-                            </div>
-
-                            <div id="firma-group" class="form-group">
-                                <label class="col-sm-2 control-label" for="firma">Firma:</label>
-                                <div class="control col-sm-9">
-                                    <input ng-model="obj.firma" type="text" id="firma" class="form-control" name="firma" size="15" placeholder="firma">
-                                </div>
-                            </div>
-
-                            <div id="skin-group" class="form-group">
-                                <label class="col-sm-2 control-label" for="skin">Skin:</label>
-                                <div class="control col-sm-9">
-                                    <input ng-model="obj.skin" type="text" id="skin" class="form-control" name="skin" size="15" placeholder="skin">
-                                </div>
                             </div>
 
                             <div class="control-group text-right">
